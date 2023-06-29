@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import './views/categories.dart';
+import './views/meals.dart';
+
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -7,7 +10,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text("stuff");
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text("new_app"),
+        ),
+        body: Categories(),
+      ),
+      routes: {'/category': (ctx) => const Meals()},
+    );
   }
 }
 
