@@ -12,19 +12,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: const Text("new_app"),
-        ),
-        body: Categories(),
-      ),
-      routes: {'/category': (ctx) => const Meals()},
+      // home: Categories(),
+      routes: {
+        '/': (ctx) => const Categories(),
+        Meals.routeName: (ctx) => const Meals(),
+      },
     );
   }
 }
 
-// SHAKA ilembe
 // I surrender all to you | i give myself away | Daily as I live | You are the reason I live | Lord I give you my heart => EBEZENA
 
 // downloads
@@ -32,8 +28,13 @@ class MyApp extends StatelessWidget {
 // mp3
 // ZAYN (2), Maroon 5 (2)
 // am I wrong/
+// iceman (frozen for 500 years)
+// black ransom
+// the negotiator, equalizer, street kings, dragged across concrete/
 
 /* 
 to dream withoug borders or boundaries, to seek adventure,
 to obsess and create => the world IMPOSSIBLE doesn't have to exist
 */
+
+// check database for african dishes
