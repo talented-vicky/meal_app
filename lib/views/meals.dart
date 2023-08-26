@@ -22,11 +22,13 @@ class Meals extends StatelessWidget {
       body: ListView.builder(
           itemCount: filteredCat.length,
           itemBuilder: (BuildContext context, int ind) => MealItem(
+              id: filteredCat[ind].id,
               imageUrl: filteredCat[ind].imageUrl,
               title: filteredCat[ind].title,
-              time: filteredCat[ind].duration.toString(),
-              comp: filteredCat[ind].complexity.toString(),
-              afford: filteredCat[ind].affordability.toString())),
+              time: filteredCat[ind].duration,
+              comp: filteredCat[ind].complexity,
+              afford: filteredCat[ind].affordability,
+              )),
     );
   }
 }

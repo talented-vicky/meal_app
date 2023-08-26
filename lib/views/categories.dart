@@ -6,10 +6,12 @@ import '../utils/constants/data.dart';
 class Categories extends StatelessWidget {
   const Categories({super.key});
 
-  void mealFunc(BuildContext ctxt, title, cont) => Navigator.of(ctxt).pushNamed(
+  void mealFunc(BuildContext ctxt, title, id) => Navigator.of(ctxt).pushNamed(
         Meals.routeName,
-        arguments: {'title': title, 'id': cont},
+        arguments: {'title': title, 'id': id},
       );
+  // mealFunc navigates to a new page sending title and id from
+  // Data().categoryInfo to the new page
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -25,10 +27,11 @@ class Categories extends StatelessWidget {
                 crossAxisSpacing: 30,
                 mainAxisSpacing: 30,
                 childAspectRatio: 1.8),
-            children: Data()
-                .categoryInfo
+            children: Data().categoryInfo
                 .map((e) => InkWell(
                       onTap: () => mealFunc(context, e.title, e.id),
+                      // clicking on each category calls a function which in turn
+                      // navigates to a new page (pasted on current page)
                       child: Container(
                           decoration: BoxDecoration(
                               gradient: LinearGradient(

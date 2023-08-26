@@ -1,16 +1,57 @@
 import 'package:flutter/material.dart';
 
+import '../../models/meal.dart';
+import '../../views/detail.dart';
+
 class MealItem extends StatelessWidget {
-  final String imageUrl, title, time, comp, afford;
+  final String id, imageUrl, title;
+  final int time;
+  final Complexity comp;
+  final Affordability afford;
   const MealItem(
       {super.key,
+      required this.id,
       required this.imageUrl,
       required this.title,
       required this.time,
       required this.comp,
-      required this.afford});
+      required this.afford
+      });
 
-  void funcUse() {}
+  String get compText {
+    switch(comp) {
+      case Complexity.simple:
+        return 'Simple';
+      case Complexity.moderate:
+        return 'Moderate';
+      case Complexity.hard:
+        return 'Hard';
+      default:
+        return 'Unknown';
+    }
+  }
+  
+  String get affordText {
+    switch(afford) {
+      case Affordability.cheap:
+        return 'Cheap';
+      case Affordability.affordable:
+        return 'Affordable';
+      case Affordability.expensive:
+        return 'Expensive';
+      default:
+        return 'Unknown';
+    }
+  }
+  void mealDetail(BuildContext ctxt, String id) {
+    Navigator.of(ctxt).pushNamed(
+      Detail.routeName,
+      arguments: id
+      // arguments: {"id": id} // object won't work here
+      // saving id param passed from statelessW into mealDetail 
+      // function as key in the "arguments" object
+    );
+  }
 
   void addFav() {}
 
@@ -18,21 +59,28 @@ class MealItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
         borderRadius: BorderRadius.circular(8),
-        onTap: () => funcUse,
-        child: Column(children: [
+        onTap: () => mealDetail(context, id),
+        // passing id param of statelessW into mealDetail function
+        // along with the widget context
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(25)
+          ),
+          margin: const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
+          elevation: 2,
+          child: Column(children: [
           Stack(children: [
-            // cliprrect borderRad only
-            // topleft and topright
-            // Image.network(
-            //   imageUrl,
-            //   height: 200,
-            //   // width: double.infinity,
-            //   fit: BoxFit.cover,
-            // ),
-            Container(
-              height: 200,
-              width: double.infinity,
-              child: const Text("S"),
+            ClipRRect(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(25),
+                topRight: Radius.circular(25)
+              ),
+              child: Image.network(
+                imageUrl,
+                height: 300,
+                width: double.infinity,
+                fit: BoxFit.cover, // maintain img resolution
+              )
             ),
             Positioned(
                 top: 10,
@@ -45,28 +93,47 @@ class MealItem extends StatelessWidget {
                       color: Color.fromARGB(255, 235, 43, 29),
                     ))),
             Positioned(
-                top: 100,
+                bottom: 50,
+                right: 5,
+                width: 250,
+                // no height to ensure fluidity, width ensures
+                // softWrap can take effect
                 child: Container(
-                    decoration: const BoxDecoration(color: Colors.grey),
+                  padding: const EdgeInsets.all(5),
+                    // decoration: const BoxDecoration(color: Colors.black54),
+                    color: Colors.black.withOpacity(.5),
                     child: Text(title,
                         style: const TextStyle(
-                            fontSize: 19, fontStyle: FontStyle.italic),
+                            color: Colors.white,
+                            fontSize: 21, fontStyle: FontStyle.italic),
+                        // softWrap: false))),
                         softWrap: true))),
           ]),
-          Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-            Row(children: [
-              const Icon(Icons.watch_later_outlined, color: Colors.blueAccent),
-              Text(time)
-            ]),
-            Row(children: [
-              const Icon(Icons.shopping_bag_rounded, color: Colors.blueAccent),
-              Text(comp)
-            ]),
-            Row(children: [
-              const Icon(Icons.attach_money_sharp, color: Colors.blueAccent),
-              Text(afford)
+          const SizedBox(
+            height: 9
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+              Row(
+                children: [
+                const Icon(Icons.alarm, color: Colors.blueAccent),
+                Text("$time min")
+              ]),
+              Row(children: [
+                const Icon(Icons.apple, color: Colors.blueAccent),
+                Text(compText)
+              ]),
+              Row(children: [
+                const Icon(Icons.monetization_on_outlined, color: Colors.blueAccent),
+                const SizedBox(width: 2),
+                Text(affordText)
+              ])
             ])
-          ])
-        ]));
+          )
+        ])
+        ));
   }
 }
