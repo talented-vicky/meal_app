@@ -18,7 +18,11 @@ class Meals extends StatelessWidget {
         .where((catData) => catData.categoriesId.contains(itemId))
         .toList();
     return Scaffold(
-      appBar: AppBar(title: Text(title)),
+      appBar: AppBar(
+        title: Text(title),
+        backgroundColor: const Color.fromARGB(255, 245, 241, 241),
+        foregroundColor: Colors.teal,
+      ),
       body: ListView.builder(
           itemCount: filteredCat.length,
           itemBuilder: (BuildContext context, int ind) => MealItem(
@@ -27,8 +31,7 @@ class Meals extends StatelessWidget {
               title: filteredCat[ind].title,
               time: filteredCat[ind].duration,
               comp: filteredCat[ind].complexity,
-              afford: filteredCat[ind].affordability,
-              )),
+              afford: filteredCat[ind].affordability)),
     );
   }
 }

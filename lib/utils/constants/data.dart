@@ -9,51 +9,71 @@ class Data {
       id: 'c1',
       title: 'Italian',
       color: Colors.purple,
+      image:
+          "https://images.unsplash.com/photo-1592119747782-d8c12c2ea267?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80",
     ),
     Category(
       id: 'c2',
       title: 'Quick & Easy',
       color: Colors.red,
+      image:
+          "https://images.unsplash.com/photo-1677563076152-8fb5f6d7ae14?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80",
     ),
     Category(
       id: 'c3',
       title: 'Hamburgers',
       color: Colors.orange,
+      image:
+          "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1635&q=80",
     ),
     Category(
       id: 'c4',
       title: 'German',
       color: Colors.amber,
+      image:
+          "https://images.unsplash.com/photo-1612874742237-6526221588e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1742&q=80",
     ),
     Category(
       id: 'c5',
       title: 'Light & Lovely',
       color: Colors.blue,
+      image:
+          "https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1675&q=80",
     ),
     Category(
       id: 'c6',
       title: 'Exotic',
       color: Colors.green,
+      image:
+          "https://images.unsplash.com/photo-1680991554256-da64cc827619?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1631&q=80",
     ),
     Category(
       id: 'c7',
       title: 'Breakfast',
       color: Colors.lightBlue,
+      image:
+          "https://images.unsplash.com/photo-1531664412848-9610afed156c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
     ),
     Category(
       id: 'c8',
       title: 'Asian',
       color: Colors.lightGreen,
+      image:
+          "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1760&q=80",
     ),
     Category(
       id: 'c9',
       title: 'French',
       color: Colors.pink,
+      image:
+          "https://images.unsplash.com/photo-1485962398705-ef6a13c41e8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80",
     ),
     Category(
       id: 'c10',
       title: 'Summer',
       color: Colors.teal,
+      image:
+          "https://images.unsplash.com/photo-1536489885071-87983c3e2859?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80",
     ),
   ];
   final List mealInfo = [
