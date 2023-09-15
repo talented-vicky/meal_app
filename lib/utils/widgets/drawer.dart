@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../views/filter.dart';
+import '../../views/cart.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});
@@ -11,9 +12,8 @@ class DrawerWidget extends StatelessWidget {
       title: Text(text, style: const TextStyle(fontWeight: FontWeight.bold)));
 
   @override
-  Widget build(BuildContext context) {
-    return Drawer(
-      child: Column(
+  Widget build(BuildContext context) => Drawer(
+          child: Column(
         children: [
           Container(
             width: double.infinity,
@@ -28,18 +28,15 @@ class DrawerWidget extends StatelessWidget {
                     fontWeight: FontWeight.bold)),
           ),
           const SizedBox(height: 15),
+          tilerBuilder("Meals", Icons.restaurant_menu_rounded,
+              () => Navigator.of(context).pushReplacementNamed('/')),
+          tilerBuilder("Cart", Icons.shopping_bag_outlined,
+              () => Navigator.of(context).pushReplacementNamed(Cart.routeName)),
           tilerBuilder(
-            "Meals",
-            Icons.restaurant_menu_rounded,
-            () => Navigator.of(context).pushReplacementNamed('/'),
-          ),
-          tilerBuilder(
-            "Filters",
-            Icons.settings,
-            () => Navigator.of(context).pushReplacementNamed(Filter.routeName),
-          ),
+              "Filters",
+              Icons.settings,
+              () =>
+                  Navigator.of(context).pushReplacementNamed(Filter.routeName)),
         ],
-      ),
-    );
-  }
+      ));
 }

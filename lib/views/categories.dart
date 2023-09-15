@@ -15,12 +15,10 @@ class Categories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-      margin: const EdgeInsets.all(10),
+      margin: const EdgeInsets.all(15),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Container(
-            margin: const EdgeInsets.symmetric(
-              vertical: 10,
-            ),
+            margin: const EdgeInsets.only(top: 10),
             child: const Column(children: [
               Text("Welcome Back",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
@@ -29,7 +27,7 @@ class Categories extends StatelessWidget {
             ])),
         Container(
             padding: const EdgeInsets.all(15),
-            margin: const EdgeInsets.symmetric(vertical: 10),
+            margin: const EdgeInsets.symmetric(vertical: 30),
             decoration: BoxDecoration(
                 gradient: LinearGradient(colors: [
                   Colors.red.withOpacity(.6),
@@ -46,18 +44,20 @@ class Categories extends StatelessWidget {
                         Container(
                           width: 180,
                           child: const Text(
-                              "You have a free meal, upon successful prep",
+                              "You have a free meal upon successful prep",
                               style:
                                   TextStyle(color: Colors.white, fontSize: 17),
                               softWrap: true),
                         ),
-                        const SizedBox(height: 5),
+                        const SizedBox(height: 10),
                         ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                elevation: 0,
-                                backgroundColor: Colors.white,
-                                shape:
-                                    CircleBorder(side: BorderSide(width: 5))),
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(Colors.white),
+                              shape: MaterialStateProperty.all(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10))),
+                            ),
                             onPressed: () => {},
                             child: const Text("Get Now!",
                                 style: TextStyle(color: Colors.black))),
@@ -90,7 +90,7 @@ class Categories extends StatelessWidget {
                                       ],
                                       begin: Alignment.bottomLeft,
                                       end: Alignment.topRight),
-                                  borderRadius: BorderRadius.circular(20)),
+                                  borderRadius: BorderRadius.circular(30)),
                               child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(e.title,
@@ -101,58 +101,76 @@ class Categories extends StatelessWidget {
                       .toList()),
             )),
         Container(
-            margin: const EdgeInsets.symmetric(vertical: 10),
+            margin: const EdgeInsets.symmetric(vertical: 30),
             child: const Text("Meals for the week",
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold))),
         Container(
-          height: 230,
+          height: 250,
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: Data().categoryInfo.length,
               itemBuilder: (BuildContext context, int ind) => Container(
                   margin: const EdgeInsets.only(right: 10),
-                  decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(.2),
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Container(
-                      width: 160,
-                      padding: const EdgeInsets.all(10),
-                      child: Column(children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(50),
-                          child: Image.network(Data().categoryInfo[ind].image,
-                              height: 105, width: 105, fit: BoxFit.cover),
-                        ),
-                        const SizedBox(height: 5),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          child: Text(Data().categoryInfo[ind].title,
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold)),
-                        ),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          child: Text(Data().categoryInfo[ind].title,
-                              style: const TextStyle(
-                                  color: Color.fromARGB(255, 126, 125, 125),
-                                  fontSize: 12)),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text("#39,000",
-                                style: TextStyle(fontWeight: FontWeight.bold)),
-                            Container(
-                                width: 30,
-                                height: 30,
-                                decoration: BoxDecoration(
-                                    color: Colors.red,
-                                    borderRadius: BorderRadius.circular(20)),
-                                child: const Icon(Icons.add,
-                                    color: Colors.white70))
-                          ],
-                        )
-                      ])))),
+                  child: Stack(children: [
+                    Container(
+                        margin: const EdgeInsets.only(top: 15),
+                        decoration: BoxDecoration(
+                            color: Colors.grey.withOpacity(.2),
+                            borderRadius: BorderRadius.circular(10)),
+                        width: 170,
+                        height: 210,
+                        padding: const EdgeInsets.all(10),
+                        child: Column(children: [
+                          const SizedBox(height: 105),
+                          Container(
+                            alignment: Alignment.centerLeft,
+                            child: Text(Data().categoryInfo[ind].title,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold)),
+                          ),
+                          Container(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                                "${Data().categoryInfo[ind].title}  x 5 min",
+                                style: const TextStyle(
+                                    color: Color.fromARGB(255, 126, 125, 125),
+                                    fontSize: 10)),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text("#39,000",
+                                  style:
+                                      TextStyle(fontWeight: FontWeight.bold)),
+                              Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                      color: Colors.teal.withOpacity(.6),
+                                      borderRadius: BorderRadius.circular(20)),
+                                  child: const Icon(Icons.add,
+                                      color: Colors.white70))
+                            ],
+                          )
+                        ])),
+                    Positioned(
+                      left: 30,
+                      child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              boxShadow: const [
+                                BoxShadow(
+                                    color: Colors.white,
+                                    spreadRadius: 2,
+                                    blurRadius: 5)
+                              ]),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(50),
+                            child: Image.network(Data().categoryInfo[ind].image,
+                                height: 105, width: 105, fit: BoxFit.cover),
+                          )),
+                    ),
+                  ]))),
         )
       ]));
 }
