@@ -4,9 +4,12 @@ import 'views/categories.dart';
 import 'views/favourites.dart';
 import 'views/cart.dart';
 import './utils/widgets/drawer.dart';
+import './models/meal.dart';
 
 class Tabs extends StatefulWidget {
-  const Tabs({super.key});
+  const Tabs({super.key, required this.favMeals});
+  final List<Meal> favMeals;
+
   static const routeName = '/tabs';
 
   @override
@@ -14,17 +17,33 @@ class Tabs extends StatefulWidget {
 }
 
 class _TabsState extends State<Tabs> {
-  final List<Map<String, dynamic>> _tabs = const [
-    {"view": Categories(), "title": "Categories"},
-    {"view": Cart(), "title": "Cart"},
-    {"view": Favourites(), "title": "Favourites"},
-  ];
+  // List<Map<String, dynamic>> _tabs = [
+  //   {"view": const Categories(), "title": "Categories"},
+  //   {"view": const Cart(), "title": "Cart"},
+  //   // I now forward the list of fav meals (now present in tabs widget)
+  //   // into the Favourites widget
+  //   {"view": Favourites(favMeal: widget.favMeals), "title": "Favourites"},
+  // ];
+  // at this point, the creation of this class isn't fully finished, hence
+  // inability to call widget.favMeals here, that's why I had to resort
+  // to using initState to do so
+
+  // List<Map<String, dynamic>> _tabs = [];
+  late List<Map<String, dynamic>> _tabs;
 
   int _tabInd = 0;
+  void _tabSwitch(int ind) => setState(() => _tabInd = ind);
 
-  void _tabSwitch(int ind) {
-    setState(() => _tabInd = ind);
-    print(ind);
+  @override
+  void initState() {
+    super.initState();
+    _tabs = [
+      {"view": const Categories(), "title": "Categories"},
+      {"view": const Cart(), "title": "Cart"},
+      // I now forward the list of fav meals (now present in tabs widget)
+      // into the Favourites widget
+      {"view": Favourites(favMeal: widget.favMeals), "title": "Favourites"},
+    ];
   }
 
   @override

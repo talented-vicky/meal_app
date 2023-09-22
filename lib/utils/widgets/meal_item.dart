@@ -8,14 +8,18 @@ class MealItem extends StatelessWidget {
   final int time;
   final Complexity comp;
   final Affordability afford;
-  const MealItem(
-      {super.key,
-      required this.id,
-      required this.imageUrl,
-      required this.title,
-      required this.time,
-      required this.comp,
-      required this.afford});
+  final Function togFav, favChk;
+  const MealItem({
+    super.key,
+    required this.id,
+    required this.imageUrl,
+    required this.title,
+    required this.time,
+    required this.comp,
+    required this.afford,
+    required this.togFav,
+    required this.favChk,
+  });
 
   String get compText {
     switch (comp) {
@@ -51,8 +55,6 @@ class MealItem extends StatelessWidget {
         );
   }
 
-  void addFav() {}
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -83,8 +85,8 @@ class MealItem extends StatelessWidget {
                     right: 20,
                     child: IconButton(
                         focusColor: Colors.red.withOpacity(.2),
-                        onPressed: () => addFav,
-                        icon: const Icon(Icons.star_border_rounded,
+                        onPressed: () => togFav(id),
+                        icon: Icon(Icons.star_border_rounded,
                             color: Color.fromARGB(255, 235, 43, 29)))),
                 Positioned(
                     bottom: 50,
