@@ -86,8 +86,10 @@ class MealItem extends StatelessWidget {
                     child: IconButton(
                         focusColor: Colors.red.withOpacity(.2),
                         onPressed: () => togFav(id),
-                        icon: Icon(Icons.star_border_rounded,
-                            color: Color.fromARGB(255, 235, 43, 29)))),
+                        icon: Icon(
+                          // favChk(id) ? Icons.star : Icons.star_border_rounded,
+                          Icons.star_border_rounded,
+                        ))),
                 Positioned(
                     bottom: 50,
                     right: 5,

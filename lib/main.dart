@@ -51,15 +51,16 @@ class _MyAppState extends State<MyApp> {
   }
 
   void _toggleFav(String mealId) {
-    final existingInd = _favouriteMeals.indexWhere((elem) => elem == mealId);
+    final existingInd = _favouriteMeals.indexWhere((elem) => elem.id == mealId);
     // the above will be -1 if the index wasn't found
 
     if (existingInd >= 0) {
-      // meal exists
+      // meal already exists, hence pop it out
       setState(() {
         _favouriteMeals.removeAt(existingInd);
       });
     } else {
+      // i.e if we get -1, which means meal doesn't exist
       setState(() {
         _favouriteMeals
             .add(Data().mealInfo.firstWhere((elem) => elem.id == mealId));

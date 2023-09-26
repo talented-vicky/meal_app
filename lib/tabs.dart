@@ -38,7 +38,7 @@ class _TabsState extends State<Tabs> {
   void initState() {
     super.initState();
     _tabs = [
-      {"view": const Categories(), "title": "Categories"},
+      {"view": const Categories(), "title": "Home"},
       {"view": const Cart(), "title": "Cart"},
       // I now forward the list of fav meals (now present in tabs widget)
       // into the Favourites widget
